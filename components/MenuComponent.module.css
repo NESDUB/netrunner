@@ -1,0 +1,96 @@
+.header {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 24px 0;
+  background-color: transparent;
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+.header.scrolled {
+  background-color: rgba(245, 245, 241, 0.95);
+  backdrop-filter: blur(8px);
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.headerGrid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.navItem {
+  text-decoration: none;
+  color: var(--color-text);
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  text-align: center;
+  padding: 8px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.3s ease;
+  position: relative;
+}
+
+/* Subtle underline indicator with precise animation */
+.navItem::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 1px;
+  background-color: var(--color-text);
+  transition: width 0.3s ease, left 0.3s ease;
+}
+
+.navItem:hover::after {
+  width: 24px;
+  left: calc(50% - 12px);
+}
+
+.logoContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo {
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  display: inline-block;
+  color: var(--color-text);
+  text-transform: uppercase;
+}
+
+/* Mobile menu with Rams-like simplicity */
+@media (max-width: 768px) {
+  .hamburger {
+    width: 24px;
+    height: 24px;
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 6px 0;
+  }
+  
+  .hamburger span {
+    display: block;
+    width: 100%;
+    height: 1px;
+    background-color: var(--color-text);
+    transition: all 0.3s ease;
+  }
+}

@@ -16,6 +16,22 @@ const nextConfig = {
         },
       },
     });
+
+    // Configure CSS Modules naming pattern
+    const cssLoader = config.module.rules
+      .find(rule => rule.oneOf?.find(r => r.sideEffects === false))
+      .oneOf.find(r => r.sideEffects === false)
+      .use.find(u => u.loader?.includes('css-loader'));
+    
+    if (cssLoader && cssLoader.options) {
+      cssLoader.options.modules = {
+        ...cssLoader.options.modules,
+        localIdentName: process.env.NODE_ENV === 'development' 
+          ? '[folder]__[local]' // In development: MainLayout__header, Home__canvas
+          : '[hash:base64:8]'   // In production: keep it minified
+      };
+    }
+    
     return config;
   },
   // Configure headers for better security

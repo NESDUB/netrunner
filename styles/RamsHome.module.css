@@ -1,0 +1,146 @@
+/* Hero section */
+.hero {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 24px;
+}
+
+.heroContent {
+  max-width: 640px; /* Based on golden ratio from 1024px */
+}
+
+.title {
+  font-size: 40px;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  margin-bottom: 24px;
+  position: relative;
+}
+
+.title::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 40px;
+  height: 1px;
+  background-color: var(--color-text);
+}
+
+.description {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  margin-bottom: 32px;
+}
+
+.buttonGroup {
+  display: flex;
+  gap: 16px;
+}
+
+.primaryButton {
+  display: inline-block;
+  padding: 12px 24px;
+  background-color: var(--color-text);
+  color: var(--color-background);
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.secondaryButton {
+  display: inline-block;
+  padding: 12px 24px;
+  background-color: transparent;
+  color: var(--color-text);
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  border: 1px solid var(--color-text);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Canvas section */
+.canvasSection {
+  width: 100%;
+  height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 64px 0;
+}
+
+.canvasContainer {
+  position: relative;
+  width: 100%;
+  max-width: 1024px;
+  height: 100%;
+  background-color: transparent;
+}
+
+/* Features section */
+.featuresSection {
+  width: 100%;
+  padding: 64px 24px;
+}
+
+.featuresGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  max-width: 1024px;
+  margin: 0 auto;
+}
+
+.featureCard {
+  padding: 24px;
+  border-bottom: 1px solid var(--color-text);
+  transition: transform 0.3s ease;
+}
+
+.featureIcon {
+  margin-bottom: 16px;
+  color: var(--color-text);
+}
+
+.featureCard h3 {
+  font-size: 18px;
+  font-weight: 400;
+  margin-bottom: 8px;
+}
+
+.featureCard p {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* CTA section */
+.ctaSection {
+  width: 100%;
+  padding: 64px 24px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.ctaContent {
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.ctaContent h2 {
+  font-size: 24px;
+  font-weight: 400;
+  margin-bottom: 16px;
+}
+
+.ctaContent p {
+  font-size: 16px;
+  margin-bottom: 24px;
+}

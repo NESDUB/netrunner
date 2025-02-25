@@ -3,55 +3,58 @@ import { useFrame } from "@react-three/fiber";
 import { Mesh } from "three";
 
 export default function Scene() {
-  const boxRef = useRef<Mesh>(null);
-  const sphereRef = useRef<Mesh>(null);
+  const sphere1Ref = useRef<Mesh>(null);
+  const sphere2Ref = useRef<Mesh>(null);
+  const sphere3Ref = useRef<Mesh>(null);
   
-  // Animation loop
-  useFrame((state, delta) => {
-    if (boxRef.current) {
-      boxRef.current.rotation.x += delta * 0.5;
-      boxRef.current.rotation.y += delta * 0.2;
+  // Simplified animation with more subtle, controlled movement
+  useFrame((state) => {
+    // Very subtle rotation only, no positional changes
+    if (sphere1Ref.current) {
+      sphere1Ref.current.rotation.y = state.clock.elapsedTime * 0.1;
     }
     
-    if (sphereRef.current) {
-      sphereRef.current.position.x = Math.sin(state.clock.elapsedTime) * 2;
-      sphereRef.current.position.y = Math.cos(state.clock.elapsedTime) * 0.3 + 1;
+    if (sphere2Ref.current) {
+      sphere2Ref.current.rotation.y = state.clock.elapsedTime * 0.07;
+    }
+    
+    if (sphere3Ref.current) {
+      sphere3Ref.current.rotation.y = state.clock.elapsedTime * 0.05;
     }
   });
 
   return (
     <>
-      {/* Lighting */}
-      <ambientLight intensity={0.3} />
-      <directionalLight 
-        position={[10, 10, 5]} 
-        intensity={1} 
-        castShadow
-        shadow-mapSize-width={1024}
-        shadow-mapSize-height={1024}
-        shadow-camera-far={50}
-        shadow-camera-left={-10}
-        shadow-camera-right={10}
-        shadow-camera-top={10}
-        shadow-camera-bottom={-10}
-      />
-      <pointLight position={[-10, -10, -10]} intensity={0.4} />
+      {/* Clean, soft lighting for matte finish */}
+      <ambientLight intensity={0.4} />
+      <directionalLight position={[5, 8, 10]} intensity={0.6} />
       
-      {/* Objects */}
-      <mesh ref={boxRef} castShadow receiveShadow position={[-1.5, 0, 0]}>
-        <boxGeometry args={[1, 1, 1]} />
-        <meshStandardMaterial color="#1E88E5" roughness={0.5} metalness={0.2} />
+      {/* Proportional spheres with Golden Ratio relationship */}
+      <mesh ref={sphere1Ref} position={[-2.618, 0, 0]}>
+        <sphereGeometry args={[1, 64, 64]} />
+        <meshStandardMaterial 
+          color="#000000" 
+          roughness={0.8} 
+          metalness={0.1}
+        />
       </mesh>
       
-      <mesh ref={sphereRef} castShadow position={[1.5, 0, 0]}>
-        <sphereGeometry args={[0.7, 32, 32]} />
-        <meshStandardMaterial color="#E91E63" roughness={0.3} metalness={0.4} />
+      <mesh ref={sphere2Ref} position={[0, 0, 0]}>
+        <sphereGeometry args={[1.618, 64, 64]} />
+        <meshStandardMaterial 
+          color="#000000" 
+          roughness={0.8} 
+          metalness={0.1}
+        />
       </mesh>
       
-      {/* Floor */}
-      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -1, 0]} receiveShadow>
-        <planeGeometry args={[15, 15]} />
-        <meshStandardMaterial color="#f5f5f5" roughness={1} metalness={0} />
+      <mesh ref={sphere3Ref} position={[2.618, 0, 0]}>
+        <sphereGeometry args={[1, 64, 64]} />
+        <meshStandardMaterial 
+          color="#000000" 
+          roughness={0.8} 
+          metalness={0.1}
+        />
       </mesh>
     </>
   );
